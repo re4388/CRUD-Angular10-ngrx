@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "ngrx-mst"
+    }
+  },
+  "defaultProject": "ngrx-mst",
+  "cli": {
+    "analytics": "bb764290-245a-4987-a391-34e640fefcf4"
+  }
 }
