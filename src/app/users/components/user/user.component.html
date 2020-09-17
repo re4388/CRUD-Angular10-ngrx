@@ -1,6 +1,46 @@
-<li>{{ user.name }}</li>
-<button
-  (click)="deleteUser(user.id)"
->
-  Delete
-</button>
+<li>{{ user.name }} {{ user.age }} {{ user.loc }}</li>
+<button (click)="showUpdateForm(user)" style="margin: 5px">Update</button>
+<button (click)="deleteUser(user._id)" style="margin: 5px">Delete</button>
+
+<div *ngIf="isUpdateActivated" style="margin-top: 50px; margin-left: 50px">
+  <h4>Update User</h4>
+  <form (ngSubmit)="updateUser(updateForm)" #updateForm="ngForm">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input
+        [(ngModel)]="userToBeUpdated.name"
+        type="text"
+        id="name"
+        name="name"
+        class="form-control"
+        required
+        style="width: 400px"
+      />
+    </div>
+    <div class="form-group">
+      <label for="side">age</label>
+      <input
+        [(ngModel)]="userToBeUpdated.age"
+        type="text"
+        id="age"
+        name="age"
+        class="form-control"
+        required
+        style="width: 400px"
+      />
+    </div>
+    <div class="form-group">
+      <label for="side">location</label>
+      <input
+        [(ngModel)]="userToBeUpdated.loc"
+        type="text"
+        id="loc"
+        name="loc"
+        class="form-control"
+        required
+        style="width: 400px"
+      />
+    </div>
+    <button [disabled]="updateForm.invalid" type="submit">Update</button>
+  </form>
+</div>

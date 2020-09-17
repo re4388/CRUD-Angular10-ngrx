@@ -9,11 +9,15 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { usersFeatureKey, reducer } from './store/index';
 import { UsersEffects } from './effects';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddUserComponent } from './components/add-user/add-user.component';
 
 @NgModule({
-  declarations: [UsersComponent, UserListsComponent, UserComponent],
+  declarations: [UsersComponent, UserListsComponent, UserComponent, AddUserComponent],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     UsersRoutingModule,
     HttpClientModule,
     StoreModule.forFeature(usersFeatureKey, reducer),

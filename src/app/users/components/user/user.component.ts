@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { User } from '../../models/user';
 import { UsersApiActions } from '../../actions/index';
+import { Update } from '@ngrx/entity';
 
 @Component({
   selector: 'app-user',
@@ -10,16 +11,35 @@ import { UsersApiActions } from '../../actions/index';
 })
 export class UserComponent implements OnInit {
   @Input() user: User;
+  userToBeUpdated: User;
+  isUpdateActivated = false;
 
   constructor(private store: Store) {}
 
   ngOnInit(): void {
-    // console.log(this.user);
   }
 
-  deleteUser(userId: number): void {
-    this.store.dispatch(UsersApiActions.deleteUser({ userId }));
+  showUpdateForm(user: User) {
+    this.userToBeUpdated = { ...user };
+    this.isUpdateActivated = true;
+  }
 
-    // this.store.dispatch(courseActionTypes.deleteCourse({ courseId }));
+  updateUser(updateForm) {
+    const update: Update<User> = {
+      id: this.userToBeUpdated._id,
+      changes: {
+        ...this.userToBeUpdated,
+        ...updateForm.value,
+      },
+    };
+
+    this.store.dispatch(UsersApiActions.updateUser({ update }));
+
+    this.isUpdateActivated = false;
+    this.userToBeUpdated = null;
+  }
+
+  deleteUser(userId: string): void {
+    this.store.dispatch(UsersApiActions.deleteUser({ userId }));
   }
 }

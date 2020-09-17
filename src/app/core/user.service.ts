@@ -9,18 +9,25 @@ import { map } from 'rxjs/operators';
 })
 export class UserService {
   http: HttpClient;
+  url = 'https://crudcrud.com/api/dbde26872f454c0aadbde5feb1c17c77/users/';
 
   constructor(http: HttpClient) {
     this.http = http;
   }
 
   getAllUsers(): Observable<User[]> {
-    return this.http.get<User[]>('https://jsonplaceholder.typicode.com/users');
+    return this.http.get<User[]>(this.url);
   }
 
-  deleteUser(userId: number): Observable<any> {
-    return this.http.delete(
-      `https://jsonplaceholder.typicode.com/users/${userId}`
-    );
+  deleteUser(userId: string): Observable<any> {
+    return this.http.delete(`${this.url}/${userId}`);
+  }
+
+  updateUser(userId: string | number, changes: Partial<User>): Observable<any> {
+    return this.http.put(`${this.url}/${userId}`, changes);
+  }
+
+  createUser(user: User): Observable<User> {
+    return this.http.post<User>(this.url, user);
   }
 }

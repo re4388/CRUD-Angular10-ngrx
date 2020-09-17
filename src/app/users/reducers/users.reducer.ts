@@ -7,7 +7,9 @@ export interface UserState extends EntityState<User> {
   usersLoaded: boolean;
 }
 
-export const adapter: EntityAdapter<User> = createEntityAdapter<User>();
+export const adapter: EntityAdapter<User> = createEntityAdapter<User>({
+  selectId: (user: User) => user._id,
+});
 
 export const initialState = adapter.getInitialState({ usersLoaded: false });
 
@@ -21,6 +23,14 @@ export const userReducer = createReducer(
 
   on(UsersApiActions.deleteUser, (state, action) => {
     return adapter.removeOne(action.userId, state);
+  }),
+
+  on(UsersApiActions.updateUser, (state, action) => {
+    return adapter.updateOne(action.update, state);
+  }),
+
+  on(UsersApiActions.createUser, (state, action) => {
+    return adapter.addOne(action.user, state);
   })
 );
 

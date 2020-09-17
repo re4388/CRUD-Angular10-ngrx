@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { defer, of } from 'rxjs';
-import { catchError, map, mergeMap, switchMap } from 'rxjs/operators';
+import { catchError, map, mergeMap, switchMap, tap } from 'rxjs/operators';
 
 import { UsersApiActions } from '../actions';
 
@@ -10,10 +10,15 @@ import { UsersApiActions } from '../actions';
 
 import { User } from '../models/user';
 import { UserService } from '../../core/user.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class UsersEffects {
-  constructor(private actions$: Actions, private storageService: UserService) {}
+  constructor(
+    private actions$: Actions,
+    private storageService: UserService,
+    private router: Router
+  ) {}
 
   loadUsers$ = createEffect(() =>
     this.actions$.pipe(
@@ -27,9 +32,33 @@ export class UsersEffects {
     )
   );
 
-  deleteUser$ = createEffect(() =>
-    this.actions$.pipe(
-    ofType(UsersApiActions.deleteUser),
-    switchMap((user) => this.storageService.deleteUser(user.userId))
-  ), { dispatch: false});
+  deleteUser$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(UsersApiActions.deleteUser),
+        switchMap((user) => this.storageService.deleteUser(user.userId))
+      ),
+    { dispatch: false }
+  );
+
+  updateUser$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(UsersApiActions.updateUser),
+        switchMap((user) =>
+          this.storageService.updateUser(user.update.id, user.update.changes)
+        )
+      ),
+    { dispatch: false }
+  );
+
+  createUser$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(UsersApiActions.createUser),
+        switchMap((action) => this.storageService.createUser(action.user)),
+        tap(() => this.router.navigateByUrl('/users'))
+      ),
+    { dispatch: false }
+  );
 }
