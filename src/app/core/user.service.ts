@@ -17,4 +17,10 @@ export class UserService {
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>('https://jsonplaceholder.typicode.com/users');
   }
+
+  deleteUser(userId: number): Observable<any> {
+    return this.http.delete(
+      `https://jsonplaceholder.typicode.com/users/${userId}`
+    );
+  }
 }

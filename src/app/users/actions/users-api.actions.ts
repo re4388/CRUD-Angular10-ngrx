@@ -10,33 +10,7 @@ export const loadUsersSuccess = createAction(
   props<{ users: User[] }>()
 );
 
-// export const loadUsersFailure = createAction(
-//   '[Users/API] Load Users Failure',
-//   props<{ error: any }>()
-// );
-
-/**
- * Add Book to Collection Actions
- */
-// export const addBookSuccess = createAction(
-//   '[Users/API] Add Book Success',
-//   props<{ book: Book }>()
-// );
-
-// export const addBookFailure = createAction(
-//   '[Users/API] Add Book Failure',
-//   props<{ book: Book }>()
-// );
-
-/**
- * Remove Book from Users Actions
- */
-// export const removeBookSuccess = createAction(
-//   '[Users/API] Remove Book Success',
-//   props<{ book: Book }>()
-// );
-
-// export const removeBookFailure = createAction(
-//   '[Users/API] Remove Book Failure',
-//   props<{ book: Book }>()
-// );
+export const deleteUser = createAction(
+  '[Users/API] Delete User',
+  props<{ userId: number }>()
+);

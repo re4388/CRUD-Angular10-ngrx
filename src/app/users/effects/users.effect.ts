@@ -27,27 +27,9 @@ export class UsersEffects {
     )
   );
 
-  // addBookToCollection$ = createEffect(() =>
-  //   this.actions$.pipe(
-  //     ofType(SelectedBookPageActions.addBook),
-  //     mergeMap(({ book }) =>
-  //       this.storageService.addToCollection([book]).pipe(
-  //         map(() => CollectionApiActions.addBookSuccess({ book })),
-  //         catchError(() => of(CollectionApiActions.addBookFailure({ book })))
-  //       )
-  //     )
-  //   )
-  // );
-
-  // removeBookFromCollection$ = createEffect(() =>
-  //   this.actions$.pipe(
-  //     ofType(SelectedBookPageActions.removeBook),
-  //     mergeMap(({ book }) =>
-  //       this.storageService.removeFromCollection([book.id]).pipe(
-  //         map(() => CollectionApiActions.removeBookSuccess({ book })),
-  //         catchError(() => of(CollectionApiActions.removeBookFailure({ book })))
-  //       )
-  //     )
-  //   )
-  // );
+  deleteUser$ = createEffect(() =>
+    this.actions$.pipe(
+    ofType(UsersApiActions.deleteUser),
+    switchMap((user) => this.storageService.deleteUser(user.userId))
+  ), { dispatch: false});
 }

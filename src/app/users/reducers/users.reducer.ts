@@ -17,7 +17,11 @@ export const userReducer = createReducer(
   on(UsersApiActions.loadUsersSuccess, (state, action) => {
     // update all course and the extra prop: `coursesLoaded: true`
     return adapter.setAll(action.users, { ...state, usersLoaded: true });
+  }),
+
+  on(UsersApiActions.deleteUser, (state, action) => {
+    return adapter.removeOne(action.userId, state);
   })
 );
 
-export const { selectAll } = adapter.getSelectors();
+export const { selectAll, selectIds } = adapter.getSelectors();

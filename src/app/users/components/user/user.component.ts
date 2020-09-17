@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { User } from '../../models/user';
+import { UsersApiActions } from '../../actions/index';
 
 @Component({
   selector: 'app-user',
@@ -9,9 +11,15 @@ import { User } from '../../models/user';
 export class UserComponent implements OnInit {
   @Input() user: User;
 
-  constructor() {}
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
     // console.log(this.user);
+  }
+
+  deleteUser(userId: number): void {
+    this.store.dispatch(UsersApiActions.deleteUser({ userId }));
+
+    // this.store.dispatch(courseActionTypes.deleteCourse({ courseId }));
   }
 }
