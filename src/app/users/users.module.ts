@@ -11,9 +11,14 @@ import { usersFeatureKey, reducer } from './store/index';
 import { UsersEffects } from './effects';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddUserComponent } from './components/add-user/add-user.component';
+import { WelcomePageComponent } from './containers/welcome-page/welcome-page.component';
+import { AnotherDashboardComponent } from './containers/another-dashboard/another-dashboard.component';
+import { CounterComponent } from './components/counter/counter.component';
+import { AnotherUserListComponent } from './components/another-user-list/another-user-list.component';
+import { UserLocComponent } from './components/user-loc/user-loc.component';
 
 @NgModule({
-  declarations: [UsersComponent, UserListsComponent, UserComponent, AddUserComponent],
+  declarations: [UsersComponent, UserListsComponent, UserComponent, AddUserComponent, WelcomePageComponent, AnotherDashboardComponent, CounterComponent, AnotherUserListComponent, UserLocComponent],
   imports: [
     CommonModule,
     FormsModule,
