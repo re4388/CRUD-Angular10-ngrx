@@ -11,7 +11,9 @@ export const adapter: EntityAdapter<User> = createEntityAdapter<User>({
   selectId: (user: User) => user._id,
 });
 
-export const initialState = adapter.getInitialState({ usersLoaded: false });
+export const initialState = adapter.getInitialState({
+  usersLoaded: false,
+});
 
 export const userReducer = createReducer(
   initialState,
@@ -34,4 +36,4 @@ export const userReducer = createReducer(
   })
 );
 
-export const { selectAll, selectIds } = adapter.getSelectors();
+export const { selectAll } = adapter.getSelectors();

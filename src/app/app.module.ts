@@ -32,10 +32,16 @@ import { MaterialModule } from './material';
       metaReducers,
       runtimeChecks: {
         // strictStateImmutability and strictActionImmutability are enabled by default
+
         strictStateSerializability: true,
         strictActionSerializability: true,
         strictActionWithinNgZone: true,
         strictActionTypeUniqueness: true,
+
+        // TODO: I use ngmodel in update user, and this break the StateImmutability
+        // this is anti-pattern to use ngrx, you shall find another way to implement
+        // the update user functionality
+
         strictStateImmutability: false,
         strictActionImmutability: false,
       },
