@@ -9,11 +9,12 @@ import { UsersApiActions } from '../../actions/index';
   styleUrls: ['./add-user.component.css'],
 })
 export class AddUserComponent implements OnInit {
+
   constructor(private store: Store) {}
 
   ngOnInit(): void {}
 
-  onSubmit(submittedForm) {
+  onSubmit(submittedForm): void {
     if (submittedForm.invalid) {
       return;
     }

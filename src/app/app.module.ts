@@ -13,6 +13,7 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 import { ROOT_REDUCERS, metaReducers } from './reducers/index';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
@@ -42,6 +43,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     EffectsModule.forRoot([]),
 
     StoreRouterConnectingModule.forRoot(),
+
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
