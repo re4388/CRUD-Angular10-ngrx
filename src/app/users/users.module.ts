@@ -22,6 +22,7 @@ import { AnotherUserListComponent } from './components/another-user-list/another
 import { UserLocComponent } from './components/user-loc/user-loc.component';
 
 import { MaterialModule } from '../material';
+import { UpdateUserComponent } from './components/user/update-user/update-user.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { MaterialModule } from '../material';
     CounterComponent,
     AnotherUserListComponent,
     UserLocComponent,
+    UpdateUserComponent,
   ],
   imports: [
     CommonModule,

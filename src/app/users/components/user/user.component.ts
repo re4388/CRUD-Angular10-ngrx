@@ -3,6 +3,8 @@ import { Store } from '@ngrx/store';
 import { User } from '../../models/user';
 import { UsersApiActions } from '../../actions/index';
 import { Update } from '@ngrx/entity';
+import { MatDialog } from '@angular/material/dialog';
+import { UpdateUserComponent } from './update-user/update-user.component';
 
 @Component({
   selector: 'app-user',
@@ -14,9 +16,16 @@ export class UserComponent implements OnInit {
   userToBeUpdated: User;
   isUpdateActivated = false;
 
-  constructor(private store: Store) {}
+  constructor(private store: Store, public dialog: MatDialog) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  openUpdateDialog(user): void {
+    this.dialog.open(UpdateUserComponent, {
+      data: {
+        user,
+      },
+    });
   }
 
   showUpdateForm(user: User) {

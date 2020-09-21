@@ -1,0 +1,52 @@
+<div style="margin-top: 50px">
+  <h4>Update User</h4>
+  <form (ngSubmit)="updateUser(updateForm)" #updateForm="ngForm">
+    <mat-form-field>
+      <mat-label for="name">Name</mat-label>
+      <input
+        matInput
+        type="text"
+        id="name"
+        name="name"
+        [(ngModel)]="userToBeUpdated.name"
+        class="form-control"
+        required
+        style="width: 400px"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label for="side">age</mat-label>
+      <input
+        matInput
+        type="text"
+        id="age"
+        name="age"
+        [(ngModel)]="userToBeUpdated.age"
+        class="form-control"
+        required
+        style="width: 400px"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label for="side">Location</mat-label>
+      <input
+        matInput
+        type="text"
+        id="loc"
+        name="loc"
+        [(ngModel)]="userToBeUpdated.loc"
+        class="form-control"
+        required
+        style="width: 400px"
+      />
+    </mat-form-field>
+    <button
+      mat-raised-button
+      [disabled]="updateForm.invalid"
+      [mat-dialog-close]="true"
+      type="submit"
+    >
+      Update
+    </button>
+  </form>
+</div>

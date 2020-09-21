@@ -15,6 +15,8 @@ import { ROOT_REDUCERS, metaReducers } from './reducers/index';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { MaterialModule } from './material';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -23,17 +25,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
+    MaterialModule,
     // StoreModule.forRoot(),
 
     StoreModule.forRoot(ROOT_REDUCERS, {
       metaReducers,
-      // runtimeChecks: {
-      //   // strictStateImmutability and strictActionImmutability are enabled by default
-      //   strictStateSerializability: true,
-      //   strictActionSerializability: true,
-      //   strictActionWithinNgZone: true,
-      //   strictActionTypeUniqueness: true,
-      // },
+      runtimeChecks: {
+        // strictStateImmutability and strictActionImmutability are enabled by default
+        strictStateSerializability: true,
+        strictActionSerializability: true,
+        strictActionWithinNgZone: true,
+        strictActionTypeUniqueness: true,
+        strictStateImmutability: false,
+        strictActionImmutability: false,
+      },
     }),
 
     StoreDevtoolsModule.instrument({

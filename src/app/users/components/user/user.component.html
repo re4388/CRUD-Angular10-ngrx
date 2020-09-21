@@ -1,8 +1,68 @@
-<li>{{ user.name }} {{ user.age }} {{ user.loc }}</li>
-<button (click)="showUpdateForm(user)" style="margin: 5px">Update</button>
-<button (click)="deleteUser(user._id)" style="margin: 5px">Delete</button>
+<mat-card>{{ user.name }} {{ user.age }} {{ user.loc }}</mat-card>
+<!-- <button mat-raised-button (click)="showUpdateForm(user)" style="margin: 5px">
+  Update
+</button> -->
+<button mat-raised-button (click)="openUpdateDialog(user)" style="margin: 5px">
+  Update
+</button>
+<button mat-raised-button (click)="deleteUser(user._id)" style="margin: 5px">
+  Delete
+</button>
 
 <div *ngIf="isUpdateActivated" style="margin-top: 50px; margin-left: 50px">
+  <h4>Update User</h4>
+
+  <form (ngSubmit)="updateUser(updateForm)" #updateForm="ngForm">
+    <mat-form-field>
+      <mat-label for="name">Name</mat-label>
+      <input
+        matInput
+        [(ngModel)]="userToBeUpdated.name"
+        type="text"
+        id="name"
+        name="name"
+        class="form-control"
+        required
+        style="width: 400px"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label for="side">age</mat-label>
+      <input
+        matInput
+        [(ngModel)]="userToBeUpdated.age"
+        type="text"
+        id="age"
+        name="age"
+        class="form-control"
+        required
+        style="width: 400px"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label for="side">Location</mat-label>
+      <input
+        matInput
+        [(ngModel)]="userToBeUpdated.loc"
+        type="text"
+        id="loc"
+        name="loc"
+        class="form-control"
+        required
+        style="width: 400px"
+      />
+    </mat-form-field>
+    <button mat-raised-button [disabled]="updateForm.invalid" type="submit">
+      Update
+    </button>
+    <!-- TODO: no need to update, no demo purpose, also update for now -->
+    <button mat-raised-button [disabled]="updateForm.invalid" type="submit">
+      Close
+    </button>
+  </form>
+</div>
+
+<!-- <div *ngIf="isUpdateActivated" style="margin-top: 50px; margin-left: 50px">
   <h4>Update User</h4>
   <form (ngSubmit)="updateUser(updateForm)" #updateForm="ngForm">
     <div class="form-group">
@@ -43,4 +103,4 @@
     </div>
     <button [disabled]="updateForm.invalid" type="submit">Update</button>
   </form>
-</div>
+</div> -->
